@@ -24,6 +24,16 @@
     font-size: 90%;
     color: #666;
   }
+
+  .guest-access {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #e5e5e5;
+  }
+
+  .guest-access .btn {
+    margin-top: 8px;
+  }
 </style>
 <div class="row vertical-center">
   <div class="col-sm-6 col-xs-12 login-box">
@@ -74,11 +84,12 @@
             </div>
           </div>
 
-          <p class="text-center" ng-if="app.guest_login">&nbsp;</p>
-
-          <button type="submit" class="btn btn-default btn-block" ng-if="app.guest_login" ng-click="loginAsGuest()">
-            <span class="fas fa-user"></span> {{ 'login.login_as_guest' | translate }}
-          </button>
+          <div class="guest-access text-center">
+            <div class="text-muted">不登录也可以先进入系统体验</div>
+            <button type="button" class="btn btn-info btn-block" ng-click="loginAsGuest()">
+              <span class="fas fa-user"></span> 以游客身份访问
+            </button>
+          </div>
         </form>
       </div>
     </div>

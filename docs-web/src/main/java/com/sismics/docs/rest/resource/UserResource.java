@@ -295,10 +295,9 @@ public class UserResource extends BaseResource {
         UserDao userDao = new UserDao();
         User user = null;
         if (Constants.GUEST_USER_ID.equals(username)) {
-            if (ConfigUtil.getConfigBooleanValue(ConfigType.GUEST_LOGIN)) {
-                // Login as guest
-                user = userDao.getActiveByUsername(Constants.GUEST_USER_ID);
-            }
+            // Always allow guest login in this lab setup so the login screen can
+            // offer a direct "access as guest" path without extra admin setup.
+            user = userDao.getActiveByUsername(Constants.GUEST_USER_ID);
         } else {
             // Login as a normal user
             user = AuthenticationUtil.authenticate(username, password);
