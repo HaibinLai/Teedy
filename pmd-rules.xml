@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<ruleset name="Custom Teedy Ruleset"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
+                             https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>
+        Custom PMD ruleset for Teedy project covering 5 software metrics:
+        - Lines of Code (LoC) via NcssCount
+        - Cyclomatic Complexity (CC) via CyclomaticComplexity (method level)
+        - Weighted Methods per Class (WMC) via CyclomaticComplexity (class level)
+        - Coupling Between Objects (CBO) via CouplingBetweenObjects
+        - Lack of Cohesion in Methods (LCOM) via GodClass (uses TCC internally)
+    </description>
+
+    <!-- LoC: Non-Commenting Source Statements -->
+    <rule ref="category/java/design.xml/NcssCount">
+        <properties>
+            <property name="methodReportLevel" value="60" />
+            <property name="classReportLevel" value="1500" />
+        </properties>
+    </rule>
+
+    <!-- CC + WMC: Cyclomatic Complexity (method level = CC, class level = WMC) -->
+    <rule ref="category/java/design.xml/CyclomaticComplexity">
+        <properties>
+            <property name="methodReportLevel" value="10" />
+            <property name="classReportLevel" value="80" />
+        </properties>
+    </rule>
+
+    <!-- CBO: Coupling Between Objects -->
+    <rule ref="category/java/design.xml/CouplingBetweenObjects">
+        <properties>
+            <property name="threshold" value="20" />
+        </properties>
+    </rule>
+
+    <!-- LCOM: God Class (uses Tight Class Cohesion / WMC / ATFD internally) -->
+    <rule ref="category/java/design.xml/GodClass" />
+
+</ruleset>
